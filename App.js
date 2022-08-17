@@ -9,6 +9,8 @@ import {
   useColorScheme,
   View,
   Image,
+  Button,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -21,9 +23,23 @@ import {
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faWallet} from '@fortawesome/free-solid-svg-icons';
+import {
+  faWallet,
+  faBell,
+  faBullhorn,
+  faMessage,
+  faArrowsToCircle,
+  faUsers,
+  faLocationCrosshairs,
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faWallet);
+library.add(faBell);
+library.add(faBullhorn);
+library.add(faMessage);
+library.add(faArrowsToCircle);
+library.add(faUsers);
+library.add(faLocationCrosshairs);
 
 import MapView, {Marker} from 'react-native-maps';
 
@@ -35,12 +51,26 @@ const App = () => {
           source={require('./assets/photos/beratt.jpg')}
           style={styles.headerProfilePhoto}
         />
-        <View>
-          <FontAwesomeIcon
-            style={styles.headerWalletIcon}
-            icon="fa-wallet"
-            size={110}
-          />
+        <View style={{flexDirection: 'column'}} D>
+          <View style={{flexDirection: 'row'}}>
+            <View style={styles.headerWalletIcon}>
+              <FontAwesomeIcon icon="fa-wallet" size={12} />
+            </View>
+            <Text style={styles.headerMoney}>146.59₺</Text>
+          </View>
+          <Text style={styles.headerUsername}>Berat Üçgül</Text>
+        </View>
+        <View
+          style={{flexDirection: 'row', marginLeft: 'auto', marginRight: 30}}>
+          <View style={styles.headerRightFirstIcon}>
+            <FontAwesomeIcon icon={faBell} size={20} color="#2F20D9" />
+          </View>
+          <View style={styles.headerRightFirstIcon}>
+            <FontAwesomeIcon icon={faBullhorn} size={20} color="#2F20D9" />
+          </View>
+          <View style={styles.headerRightFirstIcon}>
+            <FontAwesomeIcon icon={faMessage} size={20} color="#2F20D9" />
+          </View>
         </View>
       </View>
       <View style={styles.container}>
@@ -64,6 +94,21 @@ const App = () => {
             description={'This is a description of the marker'}
           />
         </MapView>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity style={styles.insideMapFirstButton}>
+            <FontAwesomeIcon icon={faUsers} size={20} color="#2F20D9" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.insideMapSecondButton}>
+            <FontAwesomeIcon icon={faArrowsToCircle} size={20} color="#fff" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.insideMapThirdButton}>
+            <FontAwesomeIcon
+              icon={faLocationCrosshairs}
+              size={20}
+              color="#2F20D9"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -152,8 +197,8 @@ const mapStyle = [
 ];
 const styles = StyleSheet.create({
   container: {
-    width: 500,
-    height: 800,
+    width: '100%',
+    height: '100%',
     top: 0,
     left: 0,
     right: 0,
@@ -191,16 +236,70 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   headerWalletIcon: {
-    borderWidth: 2,
+    borderRadius: 100,
+    borderWidth: 5,
     borderColor: '#fff',
     backgroundColor: '#fff',
     marginLeft: 10,
+  },
+  headerMoney: {
+    height: 20,
+    marginLeft: 10,
+    color: '#0CBF6A',
+  },
+  headerUsername: {
+    color: '#fff',
+    marginLeft: 10,
+    marginTop: 5,
+  },
+  headerRightFirstIcon: {
+    borderRadius: 100,
+    borderWidth: 10,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    marginLeft: 10,
+  },
+  headerRightSecondIcon: {
+    borderRadius: 100,
+    borderWidth: 10,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    marginLeft: 10,
+  },
+  headerRightThirdIcon: {
+    borderRadius: 100,
+    borderWidth: 10,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    marginLeft: 10,
+  },
+  insideMapSecondButton: {
+    height: 75,
+    width: 75,
+    borderRadius: 100,
+    backgroundColor: '#2F20D9',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 20,
   },
-  headerMoney: {},
-  headerUsername: {},
-  headerRightIcon: {},
-  textStyle: {
-    color: '#633',
+  insideMapFirstButton: {
+    height: 40,
+    width: 40,
+    borderRadius: 100,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginRight: 15,
+  },
+  insideMapThirdButton: {
+    height: 40,
+    width: 40,
+    borderRadius: 100,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginLeft: 15,
   },
 });
