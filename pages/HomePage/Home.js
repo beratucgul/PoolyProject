@@ -2,14 +2,10 @@ import React from 'react';
 
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
   Image,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 
@@ -47,8 +43,8 @@ const HomePage = ({navigation}) => {
           source={require('../../assets/photos/beratt.jpg')}
           style={styles.headerProfilePhoto}
         />
-        <View style={{flexDirection: 'column'}} D>
-          <View style={{flexDirection: 'row'}}>
+        <View style={styles.flexDirectionColumn} D>
+          <View style={styles.flexDirectionRow}>
             <View style={styles.headerWalletIcon}>
               <FontAwesomeIcon icon="fa-wallet" size={12} />
             </View>
@@ -56,41 +52,51 @@ const HomePage = ({navigation}) => {
           </View>
           <Text style={styles.headerUsername}>Berat Üçgül</Text>
         </View>
-        <View
-          style={{flexDirection: 'row', marginLeft: 'auto', marginRight: 30}}>
+        <View style={styles.headerThreeIconGeneralView}>
           <View style={styles.headerRightFirstIcon}>
             <FontAwesomeIcon icon={faBell} size={20} color="#2F1FDA" />
+            <View style={styles.badges}>
+              <Text style={styles.badgeText}>2</Text>
+            </View>
           </View>
           <View style={styles.headerRightFirstIcon}>
             <FontAwesomeIcon icon={faBullhorn} size={20} color="#2F1FDA" />
+            <View style={styles.badges}>
+              <Text style={styles.badgeText}>5</Text>
+            </View>
           </View>
           <View style={styles.headerRightFirstIcon}>
             <FontAwesomeIcon icon={faMessage} size={20} color="#2F1FDA" />
+            <View style={styles.badges}>
+              <Text style={styles.badgeText}>4</Text>
+            </View>
           </View>
         </View>
       </View>
       <View style={styles.container}>
-        <MapView
-          style={styles.mapStyle}
-          initialRegion={{
-            latitude: 41.050117,
-            longitude: 29.015997,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          customMapStyle={mapStyle}>
-          <Marker
-            draggable
-            coordinate={{
+        {
+          <MapView
+            style={styles.mapStyle}
+            initialRegion={{
               latitude: 41.050117,
               longitude: 29.015997,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
-            onDragEnd={e => alert(JSON.stringify(e.nativeEvent.coordinate))}
-            title={'Test Marker'}
-            description={'This is a description of the marker'}
-          />
-        </MapView>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            customMapStyle={mapStyle}>
+            <Marker
+              draggable
+              coordinate={{
+                latitude: 41.050117,
+                longitude: 29.015997,
+              }}
+              onDragEnd={e => alert(JSON.stringify(e.nativeEvent.coordinate))}
+              title={'Yıldız Parkı'}
+              description={'Beşiktaş/İstanbul'}
+            />
+          </MapView>
+        }
+        <View style={styles.insideMapAllIcons}>
           <TouchableOpacity style={styles.insideMapFirstButton}>
             <FontAwesomeIcon icon={faUsers} size={20} color="#2F1FDA" />
           </TouchableOpacity>
@@ -114,83 +120,86 @@ const HomePage = ({navigation}) => {
 export default HomePage;
 
 const mapStyle = [
-  {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-  {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-  {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+  {elementType: 'geometry', stylers: [{color: '#e9e9e9'}]},
+  {elementType: 'labels.text.fill', stylers: [{color: '#616161'}]},
+  {elementType: 'labels.text.stroke', stylers: [{color: '#f5f5f5'}]},
   {
-    featureType: 'administrative.locality',
+    featureType: 'administrative.land_parcel',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}],
+    stylers: [{color: '#bdbdbd'}],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#eeeeee',
+      },
+    ],
   },
   {
     featureType: 'poi',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}],
+    stylers: [{color: '#757575'}],
   },
   {
     featureType: 'poi.park',
     elementType: 'geometry',
-    stylers: [{color: '#263c3f'}],
+    stylers: [{color: '#e5e5e5'}],
   },
   {
     featureType: 'poi.park',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#6b9a76'}],
+    stylers: [{color: '#9e9e9e'}],
   },
   {
     featureType: 'road',
     elementType: 'geometry',
-    stylers: [{color: '#38414e'}],
+    stylers: [{color: '#ffffff'}],
   },
   {
-    featureType: 'road',
-    elementType: 'geometry.stroke',
-    stylers: [{color: '#212a37'}],
-  },
-  {
-    featureType: 'road',
+    featureType: 'road.arterial',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#9ca5b3'}],
+    stylers: [{color: '#757575'}],
   },
   {
     featureType: 'road.highway',
     elementType: 'geometry',
-    stylers: [{color: '#746855'}],
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'geometry.stroke',
-    stylers: [{color: '#1f2835'}],
+    stylers: [{color: '#ffffff'}],
   },
   {
     featureType: 'road.highway',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#f3d19c'}],
+    stylers: [{color: '#616161'}],
   },
   {
-    featureType: 'transit',
+    featureType: 'road.local',
+    elementType: 'labels.text.fill',
+    stylers: [
+      {
+        color: '#9e9e9e',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.line',
     elementType: 'geometry',
-    stylers: [{color: '#2f3948'}],
+    stylers: [{color: '#e5e5e5'}],
   },
   {
     featureType: 'transit.station',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}],
+    elementType: 'geometry',
+    stylers: [{color: '#eeeeee'}],
   },
   {
     featureType: 'water',
     elementType: 'geometry',
-    stylers: [{color: '#17263c'}],
+    stylers: [{color: '#f5f5f5'}],
   },
   {
     featureType: 'water',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#515c6d'}],
-  },
-  {
-    featureType: 'water',
-    elementType: 'labels.text.stroke',
-    stylers: [{color: '#17263c'}],
+    stylers: [{color: '#9e9e9e'}],
   },
 ];
 const styles = StyleSheet.create({
@@ -211,6 +220,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  flexDirectionRow: {
+    flexDirection: 'row',
+  },
+  flexDirectionColumn: {
+    flexDirection: 'column',
   },
   headerStyle: {
     height: 95,
@@ -250,6 +265,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 5,
   },
+  headerThreeIconGeneralView: {
+    flexDirection: 'row',
+    marginLeft: 'auto',
+    marginRight: 30,
+  },
   headerRightFirstIcon: {
     borderRadius: 100,
     borderWidth: 10,
@@ -271,14 +291,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginLeft: 10,
   },
-  insideMapSecondButton: {
-    height: 72,
-    width: 72,
-    borderRadius: 100,
-    backgroundColor: '#2F1FDA',
+  insideMapAllIcons: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
   },
   insideMapFirstButton: {
     height: 36,
@@ -289,6 +304,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 15,
   },
+  insideMapSecondButton: {
+    height: 72,
+    width: 72,
+    borderRadius: 100,
+    backgroundColor: '#2F1FDA',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
   insideMapThirdButton: {
     height: 36,
     width: 36,
@@ -297,5 +321,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 15,
+  },
+  badges: {
+    backgroundColor: 'red',
+    position: 'absolute',
+    top: -12,
+    right: -10,
+    borderRadius: 100,
+    height: 13,
+    width: 13,
+  },
+  badgeText: {
+    color: '#fff',
+    width: 5,
+    height: 10,
+    fontSize: 8,
+    left: 4,
   },
 });
