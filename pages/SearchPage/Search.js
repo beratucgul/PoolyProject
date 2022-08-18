@@ -13,6 +13,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   faHouseCircleCheck,
   faAngleRight,
+  faAngleLeft,
   faBriefcase,
   faHeart,
   faClockRotateLeft,
@@ -23,6 +24,7 @@ library.add(faAngleRight);
 library.add(faBriefcase);
 library.add(faHeart);
 library.add(faClockRotateLeft);
+library.add(faAngleLeft);
 
 const previousLocations = [
   {
@@ -77,12 +79,16 @@ const searchList = [
   },
 ];
 
-export default function Search() {
+export default function Search({navigation}) {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
 
   const [isBackgroundOpacity, setIsBackgroundOpacity] = useState(false);
+
+  const navigates = () => {
+    navigation.navigate('Home');
+  };
 
   //Searchbar Items
   useEffect(() => {
@@ -154,6 +160,14 @@ export default function Search() {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <View style={styles.backIcon}>
+          <FontAwesomeIcon
+            onPress={() => navigates()}
+            icon={faAngleLeft}
+            size={20}
+            color="#000"
+          />
+        </View>
         <View style={styles.inputContainers}>
           <View
             style={[
@@ -168,6 +182,7 @@ export default function Search() {
               value={search}
               onFocus={searchInputClick}
               placeholder="Şuanki Konumun"
+              placeholderTextColor={'rgba(137, 138, 141, 1)'}
               style={styles.FromInputText}
             />
           </View>
@@ -181,6 +196,7 @@ export default function Search() {
             <Text style={styles.ToText}>Nereye: </Text>
             <TextInput
               placeholder="Varış Noktası"
+              placeholderTextColor={'rgba(137, 138, 141, 1)'}
               onFocus={searchInputClick}
               style={styles.FromInputText}
             />
@@ -265,16 +281,20 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  backIcon: {
+    marginLeft: 29,
+    marginTop: 50,
+  },
   inputContainers: {
     alignItems: 'center',
   },
   FromInputView: {
     width: '87%',
     height: 52,
-    borderColor: '#000',
+    borderColor: 'rgba(0,0,0,1)',
     marginEnd: 26,
     marginStart: 26,
-    marginTop: 10,
+    marginTop: 28,
     borderWidth: 2,
     borderRadius: 10,
     alignItems: 'center',
@@ -285,11 +305,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     marginLeft: 20,
+    color: 'rgba(0,0,0,1)',
   },
   ToInputView: {
     width: '87%',
     height: 52,
-    borderColor: '#000',
+    borderColor: 'rgba(0,0,0,1)',
     marginEnd: 26,
     marginStart: 26,
     marginTop: 20,
@@ -303,13 +324,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     marginLeft: 20,
+    color: 'rgba(0,0,0,1)',
   },
   dashedLineFirst: {
     borderStyle: 'dotted',
     borderWidth: 1,
     borderRadius: 1,
     borderColor: '#ADB3BC',
-    width: 378,
+    width: '87%',
     marginTop: 25,
     marginLeft: 25,
     marginRight: 25,
@@ -381,7 +403,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 1,
     borderColor: '#ADB3BC',
-    width: 378,
+    width: '87%',
     marginTop: 45,
     marginLeft: 25,
     marginRight: 25,
@@ -417,7 +439,7 @@ const styles = StyleSheet.create({
   horizontalLine: {
     borderBottomColor: '#ADB3BC',
     borderBottomWidth: 0.5,
-    width: 378,
+    width: '87%',
     marginTop: 20,
     marginLeft: 25,
     marginRight: 25,
@@ -432,6 +454,9 @@ const styles = StyleSheet.create({
     zIndex: 60,
     marginLeft: 26,
     marginRight: 26,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   afterSearchViewStyle: {
     borderWidth: 1,
@@ -454,11 +479,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(0,0,0,.5)',
     zIndex: 50,
-  },
-  opacityOn: {
-    opacity: 1,
-  },
-  opacityOff: {
-    opacity: 0,
   },
 });

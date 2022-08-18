@@ -7,6 +7,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -38,6 +39,7 @@ const HomePage = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex: 6}}>
+      <StatusBar backgroundColor="#2F1FDA" />
       <View style={styles.headerStyle}>
         <Image
           source={require('../../assets/photos/beratt.jpg')}
@@ -73,6 +75,7 @@ const HomePage = ({navigation}) => {
           </View>
         </View>
       </View>
+      <View style={styles.headerStyleSecond} />
       <View style={styles.container}>
         {
           <MapView
@@ -228,16 +231,32 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   headerStyle: {
-    height: 95,
     width: '100%',
     backgroundColor: '#2F1FDA',
-    borderBottomColor: '#23AA49',
+    borderBottomColor: 'transparent',
     borderBottomWidth: 3,
-    borderRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     borderBottomRadius: 10,
     alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
+    zIndex: 50,
+  },
+  headerStyleSecond: {
+    height: 125,
+    width: '100%',
+    backgroundColor: '#23AA49',
+    borderBottomColor: 'transparent',
+    borderBottomWidth: 3,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomRadius: 10,
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    zIndex: 1,
+    position: 'absolute',
   },
   headerProfilePhoto: {
     height: 48,
