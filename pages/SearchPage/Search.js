@@ -155,7 +155,13 @@ export default function Search() {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.inputContainers}>
-          <View style={styles.FromInputView}>
+          <View
+            style={[
+              styles.FromInputView,
+              {
+                backgroundColor: isBackgroundOpacity ? '#fff' : '',
+              },
+            ]}>
             <Text style={styles.FromText}>Nereden: </Text>
             <TextInput
               onChangeText={text => searchFilterFunction(text)}
@@ -165,15 +171,28 @@ export default function Search() {
               style={styles.FromInputText}
             />
           </View>
-          <View style={styles.ToInputView}>
+          <View
+            style={[
+              styles.ToInputView,
+              {
+                backgroundColor: isBackgroundOpacity ? '#fff' : '',
+              },
+            ]}>
             <Text style={styles.ToText}>Nereye: </Text>
             <TextInput
               placeholder="Varış Noktası"
+              onFocus={searchInputClick}
               style={styles.FromInputText}
             />
           </View>
         </View>
-        <View style={styles.searchBarListView}>
+        <View
+          style={[
+            styles.searchBarListView,
+            {
+              backgroundColor: isBackgroundOpacity ? '#fff' : '',
+            },
+          ]}>
           <FlatList
             data={filteredDataSource}
             keyExtractor={(item, index) => index.toString()}
@@ -250,7 +269,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   FromInputView: {
-    width: 375,
+    width: '87%',
     height: 52,
     borderColor: '#000',
     marginEnd: 26,
@@ -261,7 +280,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 60,
-    backgroundColor: '#000',
   },
   FromText: {
     fontWeight: 'bold',
@@ -269,7 +287,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   ToInputView: {
-    width: 375,
+    width: '87%',
     height: 52,
     borderColor: '#000',
     marginEnd: 26,
@@ -279,6 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     flexDirection: 'row',
+    zIndex: 60,
   },
   ToText: {
     fontWeight: 'bold',
@@ -408,18 +427,19 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   searchBarListView: {
+    width: '87%',
     marginTop: 5,
+    zIndex: 60,
+    marginLeft: 26,
+    marginRight: 26,
   },
   afterSearchViewStyle: {
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     borderRadius: 4,
     height: 57,
-    width: 372,
-    marginLeft: 26,
-    marginRight: 26,
+    width: '100%',
     alignSelf: 'center',
-    zIndex: 5,
     justifyContent: 'center',
   },
   afterSearchText: {
