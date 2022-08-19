@@ -5,6 +5,7 @@ import {
   TextInput,
   FlatList,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 
@@ -70,7 +71,7 @@ export default function Search({navigation}) {
 
   const [isBackgroundOpacity, setIsBackgroundOpacity] = useState(false);
 
-  const navigates = () => {
+  const goBacktoHomeFunction = () => {
     navigation.goBack();
   };
 
@@ -156,17 +157,13 @@ export default function Search({navigation}) {
   const searchInputClick = () => {
     setIsBackgroundOpacity(true);
   };
-  console.log('BAKGROUD ' + isBackgroundOpacity);
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.backIcon}>
-          <FontAwesomeIcon
-            onPress={() => navigates()}
-            icon={faArrowLeft}
-            size={20}
-            color="#000"
-          />
+          <TouchableOpacity onPress={goBacktoHomeFunction}>
+            <FontAwesomeIcon icon={faArrowLeft} size={20} color="#000" />
+          </TouchableOpacity>
         </View>
         <View style={styles.inputContainers}>
           <View
@@ -284,6 +281,7 @@ const styles = StyleSheet.create({
   backIcon: {
     marginLeft: 29,
     marginTop: 50,
+    zIndex: 60,
   },
   inputContainers: {
     alignItems: 'center',

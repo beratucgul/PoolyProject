@@ -77,28 +77,26 @@ const HomePage = ({navigation}) => {
       </View>
       <View style={styles.headerStyleSecond} />
       <View style={styles.container}>
-        {/* {
-          <MapView
-            style={styles.mapStyle}
-            initialRegion={{
+        <MapView
+          style={styles.mapStyle}
+          initialRegion={{
+            latitude: 41.050117,
+            longitude: 29.015997,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+          customMapStyle={mapStyle}>
+          <Marker
+            draggable
+            coordinate={{
               latitude: 41.050117,
               longitude: 29.015997,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
             }}
-            customMapStyle={mapStyle}>
-            <Marker
-              draggable
-              coordinate={{
-                latitude: 41.050117,
-                longitude: 29.015997,
-              }}
-              onDragEnd={e => alert(JSON.stringify(e.nativeEvent.coordinate))}
-              title={'Yıldız Parkı'}
-              description={'Beşiktaş/İstanbul'}
-            />
-          </MapView>
-        } */}
+            onDragEnd={e => alert(JSON.stringify(e.nativeEvent.coordinate))}
+            title={'Yıldız Parkı'}
+            description={'Beşiktaş/İstanbul'}
+          />
+        </MapView>
         <View style={styles.insideMapAllIcons}>
           <TouchableOpacity style={styles.insideMapFirstButton}>
             <FontAwesomeIcon icon={faUsers} size={20} color="#2F1FDA" />
