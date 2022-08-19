@@ -303,10 +303,10 @@ const styles = StyleSheet.create({
     height: 14,
     width: 0,
     marginTop: 5,
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: 'rgba(0, 0, 0, 1)',
-    marginLeft: 8,
+    marginLeft: 10,
   },
   endRouteIcon: {
     marginTop: 12,
