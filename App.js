@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import HomePage from './pages/HomePage/Home';
-import {StackNavigator} from './Router/StackNavigator';
+import {StackNavigator} from './router/StackNavigator';
 
 const App = () => {
   return (

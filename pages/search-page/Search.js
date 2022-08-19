@@ -12,19 +12,19 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   faHouseCircleCheck,
-  faAngleRight,
-  faAngleLeft,
+  faArrowRight,
+  faArrowLeft,
   faBriefcase,
   faHeart,
   faClockRotateLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faHouseCircleCheck);
-library.add(faAngleRight);
+library.add(faArrowRight);
 library.add(faBriefcase);
 library.add(faHeart);
 library.add(faClockRotateLeft);
-library.add(faAngleLeft);
+library.add(faArrowLeft);
 
 const previousLocations = [
   {
@@ -43,22 +43,6 @@ const previousLocations = [
     location: 'Ankara, Çubuk',
   },
 ];
-
-//Location Flatlist item
-const Location = ({location, address}) => (
-  <View style={styles.flexDirectionColumn}>
-    <View style={styles.locations}>
-      <View style={styles.locationIcon}>
-        <FontAwesomeIcon icon={faClockRotateLeft} size={20} color="#000" />
-      </View>
-      <View style={styles.flexDirectionColumn}>
-        <Text style={styles.addressText}>{location} </Text>
-        <Text style={styles.locationText}>{address}</Text>
-      </View>
-    </View>
-    <View style={styles.horizontalLine} />
-  </View>
-);
 
 const searchList = [
   {
@@ -87,7 +71,7 @@ export default function Search({navigation}) {
   const [isBackgroundOpacity, setIsBackgroundOpacity] = useState(false);
 
   const navigates = () => {
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   //Searchbar Items
@@ -145,8 +129,24 @@ export default function Search({navigation}) {
 
   //Searchbar item onClick
   const getItem = item => {
-    alert('Id : ' + item.id + ' Title : ' + item.title);
+    navigation.navigate('Card');
   };
+
+  //Location Flatlist item
+  const Location = ({location, address}) => (
+    <View style={styles.flexDirectionColumn}>
+      <View style={styles.locations}>
+        <View style={styles.locationIcon}>
+          <FontAwesomeIcon icon={faClockRotateLeft} size={20} color="#000" />
+        </View>
+        <View style={styles.flexDirectionColumn}>
+          <Text style={styles.addressText}>{location} </Text>
+          <Text style={styles.locationText}>{address}</Text>
+        </View>
+      </View>
+      <View style={styles.horizontalLine} />
+    </View>
+  );
 
   // Previous Locations render
   const renderItem = ({item}) => (
@@ -163,7 +163,7 @@ export default function Search({navigation}) {
         <View style={styles.backIcon}>
           <FontAwesomeIcon
             onPress={() => navigates()}
-            icon={faAngleLeft}
+            icon={faArrowLeft}
             size={20}
             color="#000"
           />
@@ -227,7 +227,7 @@ export default function Search({navigation}) {
             <Text style={styles.homeCity}>İstanbul, Beşiktaş</Text>
           </View>
           <View style={styles.rightIcon}>
-            <FontAwesomeIcon icon={faAngleRight} size={20} color="#000" />
+            <FontAwesomeIcon icon={faArrowRight} size={20} color="#000" />
           </View>
         </View>
         <View style={styles.workAddress}>
@@ -239,7 +239,7 @@ export default function Search({navigation}) {
             <Text style={styles.workCity}>İstanbul, Maslak</Text>
           </View>
           <View style={styles.rightIcon}>
-            <FontAwesomeIcon icon={faAngleRight} size={20} color="#000" />
+            <FontAwesomeIcon icon={faArrowRight} size={20} color="#000" />
           </View>
         </View>
         <View style={styles.favorites}>
@@ -248,7 +248,7 @@ export default function Search({navigation}) {
           </View>
           <Text style={styles.favoritesText}>Kaydedilenler </Text>
           <View style={styles.rightIcon}>
-            <FontAwesomeIcon icon={faAngleRight} size={20} color="#000" />
+            <FontAwesomeIcon icon={faArrowRight} size={20} color="#000" />
           </View>
         </View>
         <View style={styles.dashedLineSecond} />

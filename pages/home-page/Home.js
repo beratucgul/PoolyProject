@@ -77,7 +77,7 @@ const HomePage = ({navigation}) => {
       </View>
       <View style={styles.headerStyleSecond} />
       <View style={styles.container}>
-        {
+        {/* {
           <MapView
             style={styles.mapStyle}
             initialRegion={{
@@ -98,7 +98,7 @@ const HomePage = ({navigation}) => {
               description={'Beşiktaş/İstanbul'}
             />
           </MapView>
-        }
+        } */}
         <View style={styles.insideMapAllIcons}>
           <TouchableOpacity style={styles.insideMapFirstButton}>
             <FontAwesomeIcon icon={faUsers} size={20} color="#2F1FDA" />
