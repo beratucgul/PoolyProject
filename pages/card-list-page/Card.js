@@ -40,7 +40,7 @@ export default function Card({navigation}) {
   };
   return (
     <ScrollView>
-      <StatusBar backgroundColor="#F2F2F2" />
+      <StatusBar barStyle="dark-content" backgroundColor="#F2F2F2" />
       <View style={styles.container}>
         <Text style={styles.headerText}>Sürüşler</Text>
         <View style={styles.backIcon}>

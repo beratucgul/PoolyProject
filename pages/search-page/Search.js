@@ -160,7 +160,7 @@ export default function Search({navigation}) {
   };
   return (
     <ScrollView>
-      <StatusBar backgroundColor="#F2F2F2" />
+      <StatusBar barStyle="dark-content" backgroundColor="#F2F2F2" />
       <View style={styles.container}>
         <View style={styles.backIcon}>
           <TouchableOpacity
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     marginLeft: 29,
-    marginTop: 50,
+    marginTop: 25,
     zIndex: 60,
   },
   inputContainers: {
