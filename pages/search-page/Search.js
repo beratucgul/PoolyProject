@@ -6,6 +6,7 @@ import {
   FlatList,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 
@@ -159,9 +160,12 @@ export default function Search({navigation}) {
   };
   return (
     <ScrollView>
+      <StatusBar backgroundColor="#F2F2F2" />
       <View style={styles.container}>
         <View style={styles.backIcon}>
-          <TouchableOpacity onPress={goBacktoHomeFunction}>
+          <TouchableOpacity
+            onPress={goBacktoHomeFunction}
+            style={styles.goBackButton}>
             <FontAwesomeIcon icon={faArrowLeft} size={20} color="#000" />
           </TouchableOpacity>
         </View>
@@ -477,5 +481,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(0,0,0,.5)',
     zIndex: 50,
+  },
+  goBackButton: {
+    width: 20,
+    height: 20,
   },
 });

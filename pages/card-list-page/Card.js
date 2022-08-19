@@ -6,6 +6,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 
@@ -39,10 +40,13 @@ export default function Card({navigation}) {
   };
   return (
     <ScrollView>
+      <StatusBar backgroundColor="#F2F2F2" />
       <View style={styles.container}>
         <Text style={styles.headerText}>Sürüşler</Text>
         <View style={styles.backIcon}>
-          <TouchableOpacity onPress={goBackFunction}>
+          <TouchableOpacity
+            style={styles.goBackButton}
+            onPress={goBackFunction}>
             <FontAwesomeIcon icon={faArrowLeft} size={20} color="#000" />
           </TouchableOpacity>
         </View>
@@ -429,5 +433,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 14,
     marginLeft: 13,
+  },
+  goBackButton: {
+    width: 20,
+    height: 20,
   },
 });

@@ -32,6 +32,52 @@ library.add(faLocationCrosshairs);
 
 import MapView, {Marker} from 'react-native-maps';
 
+const carCoords = [
+  {
+    latitude: 41.053256,
+    longitude: 29.012391,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.053852,
+    longitude: 29.00752,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.051403,
+    longitude: 29.008561,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.053999,
+    longitude: 29.009213,
+    title: 'Lorem Ipsum',
+  },
+];
+
+const userCoords = [
+  {
+    latitude: 41.055256,
+    longitude: 29.012391,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.050852,
+    longitude: 29.00752,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.055403,
+    longitude: 29.008561,
+    title: 'Lorem Ipsum',
+  },
+  {
+    latitude: 41.056999,
+    longitude: 29.009213,
+    title: 'Lorem Ipsum',
+  },
+];
+
 const HomePage = ({navigation}) => {
   const navigates = () => {
     navigation.navigate('Search');
@@ -80,22 +126,55 @@ const HomePage = ({navigation}) => {
         <MapView
           style={styles.mapStyle}
           initialRegion={{
-            latitude: 41.050117,
-            longitude: 29.015997,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: 41.052355,
+            longitude: 29.008904,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
           }}
           customMapStyle={mapStyle}>
           <Marker
-            draggable
             coordinate={{
-              latitude: 41.050117,
-              longitude: 29.015997,
+              latitude: 41.052355,
+              longitude: 29.008904,
             }}
-            onDragEnd={e => alert(JSON.stringify(e.nativeEvent.coordinate))}
-            title={'Yıldız Parkı'}
-            description={'Beşiktaş/İstanbul'}
+            title={'Lorem Ipsum'}
           />
+          {carCoords.map((item, index) => (
+            <Marker
+              key={index}
+              coordinate={{latitude: item.latitude, longitude: item.longitude}}
+              title={item.title}
+              description={item.description}>
+              <Image
+                source={require('../../assets/photos/ferrari.png')}
+                style={styles.carStyle}
+                resizeMode="contain"
+              />
+            </Marker>
+          ))}
+          {userCoords.map((item, index) => (
+            <Marker
+              key={index}
+              coordinate={{latitude: item.latitude, longitude: item.longitude}}
+              title={item.title}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Image
+                  source={require('../../assets/photos/marker.png')}
+                  style={styles.markerStyle}
+                  resizeMode="contain"
+                />
+                <Image
+                  source={require('../../assets/photos/beratt.jpg')}
+                  style={styles.markerUserPhoto}
+                  resizeMode="contain"
+                />
+              </View>
+            </Marker>
+          ))}
         </MapView>
         <View style={styles.insideMapAllIcons}>
           <TouchableOpacity style={styles.insideMapFirstButton}>
@@ -354,5 +433,20 @@ const styles = StyleSheet.create({
     height: 10,
     fontSize: 8,
     left: 4,
+  },
+  carStyle: {
+    width: 48,
+    height: 36,
+  },
+  markerUserPhoto: {
+    position: 'absolute',
+    borderRadius: 100,
+    height: 18,
+    width: 18,
+    top: 5,
+  },
+  markerStyle: {
+    width: 36,
+    height: 36,
   },
 });
