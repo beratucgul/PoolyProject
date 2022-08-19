@@ -407,9 +407,9 @@ const styles = StyleSheet.create({
   greenVerticalLine: {
     width: 0,
     height: 50,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'rgba(35, 170, 73, 1)',
-    marginLeft: 8,
+    marginLeft: 10,
     marginTop: 14,
   },
   betweenTwoRoute: {
